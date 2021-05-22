@@ -9,7 +9,7 @@ export class AppService {
   constructor(private http: HttpClient) {}
 
   getStatCounts() {
-    const url = `${environment.apiUrl}tracker/count`;
+    const url = `${environment.apiUrl}trackers/counts`;
     return this.httpGet(url);
   }
 
