@@ -41,6 +41,31 @@ export class AppComponent implements AfterViewInit {
       this.updateFlag = true;
     });
   }
+  mobileWallpaperDownload() {
+    if (!this.chartOptions) {
+      return;
+    }
+    const mobileChartOption: Highcharts.Options = _cloneDeep(this.chartOptions);
+    mobileChartOption.chart = mobileChartOption.chart ? { ...mobileChartOption.chart, width: 1080 } : {};
+    mobileChartOption.chart = mobileChartOption.chart ? { ...mobileChartOption.chart, height: 2340 } : {};
+    const imageRequest = { infile: mobileChartOption };
+    this.appService.getStatImage(imageRequest).subscribe((data: any) => {
+      saveAs(data, 'mobile_wallpaper.png');
+    });
+  }
+
+  desktopWallpaperDownload() {
+    if (!this.chartOptions) {
+      return;
+    }
+    const mobileChartOption: Highcharts.Options = _cloneDeep(this.chartOptions);
+    mobileChartOption.chart = mobileChartOption.chart ? { ...mobileChartOption.chart, width: 1920 } : {};
+    mobileChartOption.chart = mobileChartOption.chart ? { ...mobileChartOption.chart, height: 1080 } : {};
+    const imageRequest = { infile: mobileChartOption };
+    this.appService.getStatImage(imageRequest).subscribe((data: any) => {
+      saveAs(data, 'desktop_wallpaper.png');
+    });
+  }
 
   ngAfterViewInit() {}
 }
